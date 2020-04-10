@@ -5,14 +5,19 @@
         <mat-icon color="primary">public</mat-icon>
       </ng-template>
 
+      <div *ngIf="posts && posts.length > 0; else showEmptyMessage">
+        <social-network-post *ngFor="let post of publicPosts"
+                             [post]="post"
+                             (deletePost)="deletePost.emit($event)"
+                             (editPost)="onEditPost($event)"
+        ></social-network-post>
+      </div>
 
-      <social-network-post (deletePost)="onDeletePost($event)"></social-network-post>
+      <ng-template #showEmptyMessage>
+        <p class="empty-message">Aún no has creado una publicación en esta categoría</p>
+      </ng-template>
 
-      <social-network-post></social-network-post>
 
-      <social-network-post></social-network-post>
-
-      <social-network-post></social-network-post>
     </mat-tab>
 
     <mat-tab>
@@ -20,13 +25,18 @@
         <mat-icon color="primary">people</mat-icon>
       </ng-template>
 
-      <social-network-post></social-network-post>
+      <div *ngIf="friendPosts && friendPosts.length > 0; else showEmptyMessage">
+        <social-network-post *ngFor="let post of friendPosts"
+                             [post]="post"
+                             (deletePost)="deletePost.emit($event)"
+                             (editPost)="onEditPost($event)"></social-network-post>
+      </div>
 
-      <social-network-post></social-network-post>
+      <ng-template #showEmptyMessage>
+        <p class="empty-message">Aún no has creado una publicación en esta categoría</p>
+      </ng-template>
 
-      <social-network-post></social-network-post>
 
-      <social-network-post></social-network-post>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

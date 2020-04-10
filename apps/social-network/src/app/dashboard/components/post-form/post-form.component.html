@@ -10,15 +10,16 @@
     <mat-card-actions>
       <mat-form-field>
         <mat-label>¿Quienes podrán verlo?</mat-label>
-        <mat-select>
+        <mat-select formControlName="public">
           <mat-option *ngFor="let option of publicOptions" [value]="option.value">
             {{option.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button [disabled]="postForm.invalid" color="primary"  mat-icon-button aria-label="Publicar post">
-        <mat-icon>send</mat-icon>
+      <button [disabled]="postForm.invalid" color="primary" mat-icon-button
+              aria-label="Enviar publicación">
+        <mat-icon>{{isEditForm ? 'edit' : 'send'}}</mat-icon>
       </button>
     </mat-card-actions>
 
