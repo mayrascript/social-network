@@ -17,7 +17,7 @@ export class PostFormComponent implements OnInit {
     },
     {
       value: 'friends',
-      name: 'Solo mis amigos'
+      name: 'Mis amigos'
     }
   ];
 

@@ -7,7 +7,7 @@
                 placeholder="¿Que está pasando?"></textarea>
     </mat-form-field>
 
-    <div class="form-footer">
+    <mat-card-actions>
       <mat-form-field>
         <mat-label>¿Quienes podrán verlo?</mat-label>
         <mat-select>
@@ -20,6 +20,7 @@
       <button [disabled]="postForm.invalid" color="primary"  mat-icon-button aria-label="Publicar post">
         <mat-icon>send</mat-icon>
       </button>
-    </div>
+    </mat-card-actions>
+
   </form>
 </mat-card>

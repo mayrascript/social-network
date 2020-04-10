@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -18,7 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -26,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }
