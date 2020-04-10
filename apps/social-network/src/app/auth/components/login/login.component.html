@@ -24,7 +24,7 @@
         Este campo es <strong>requerido</strong>
       </mat-error>
 
-      <mat-error *ngIf="registerForm.controls.password.hasError('minLength') || registerForm.controls.password.hasError('maxLength')">
+      <mat-error *ngIf="loginForm.controls.password.hasError('minLength') || loginForm.controls.password.hasError('maxLength')">
         Este cambo debe contener entre 6 y 12 caracteres
       </mat-error>
 
