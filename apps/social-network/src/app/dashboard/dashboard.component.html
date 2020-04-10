@@ -1,0 +1,10 @@
+<mat-card>
+  <social-network-post-form [post]="post"
+                            (createPost)="onCreatePost($event)"
+                            (editPost)="onEditPost($event)"></social-network-post-form>
+
+  <social-network-posts [posts]="posts"
+                        (editPost)="onEditPostInForm($event)"
+                        (deletePost)="onDeletePost($event)"></social-network-posts>
+
+</mat-card>

@@ -1,0 +1,15 @@
+<mat-card class="post-card">
+  <mat-card-content>
+    <p>
+      {{post.comment}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="editPost.emit(post)" color="primary" mat-icon-button aria-label="Editar Publicación">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="confirmDeletePost(post.id)" mat-icon-button aria-label="Eliminar Publicación">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
