@@ -1,0 +1,50 @@
+<mat-card>
+  <h2>Registro</h2>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+
+    <mat-form-field class="full-width">
+      <mat-label>Nombre Completo</mat-label>
+      <input matInput formControlName="fullName" [errorStateMatcher]="matcher"
+             placeholder="Mayra Rodriguez">
+
+      <mat-error *ngIf="registerForm.controls.fullName.hasError('required')">
+        Este campo es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" [errorStateMatcher]="matcher"
+             placeholder="Ex. mayra@example.com">
+
+      <mat-error *ngIf="registerForm.controls.email.hasError('email') && !registerForm.controls.email.hasError('required')">
+        Por favor ingrese un email valido
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+        Este campo es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="password" type="password" [errorStateMatcher]="matcher"
+             placeholder="Min 6 caracteres y máximo 12">
+
+      <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+        Este campo es <strong>requerido</strong>
+      </mat-error>
+
+      <mat-error *ngIf="registerForm.controls.password.hasError('minLength') || registerForm.controls.password.hasError('maxLength')">
+        Este cambo debe contener entre 6 y 12 caracteres
+      </mat-error>
+
+    </mat-form-field>
+
+    <div class="form-footer">
+      <button [disabled]="registerForm.invalid" mat-raised-button color="primary">Crear Usuario</button>
+      <a routerLink="/auth/login" class="auth-link">Ya tengo una cuenta</a>
+    </div>
+
+  </form>
+</mat-card>
