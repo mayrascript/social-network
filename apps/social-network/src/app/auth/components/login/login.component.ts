@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from 'apps/social-network/src/app/core/helpers/error-state-matcher';
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   matcher = new CustomErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -32,6 +34,10 @@ export class LoginComponent implements OnInit {
   login() {
     const user = this.loginForm.value;
     console.log(user);
+    // TODO: integrate service
+    this.goToDashboard();
   }
+
+  goToDashboard = () => this.router.navigate(['/dashboard']);
 
 }
