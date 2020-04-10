@@ -12,4 +12,9 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDeletePost(ev: any) {
+    console.log('Delete post', ev);
+    // TODO: implement delete post
+  }
+
 }
