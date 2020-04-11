@@ -3,11 +3,21 @@
   <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
 
     <mat-form-field class="full-width">
-      <mat-label>Nombre Completo</mat-label>
-      <input matInput formControlName="fullName" [errorStateMatcher]="matcher"
-             placeholder="Mayra Rodriguez">
+      <mat-label>Nombre* </mat-label>
+      <input matInput formControlName="firstName" [errorStateMatcher]="matcher"
+             placeholder="Mayra">
 
-      <mat-error *ngIf="registerForm.controls.fullName.hasError('required')">
+      <mat-error *ngIf="registerForm.controls.firstName.hasError('required')">
+        Este campo es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Apellido* </mat-label>
+      <input matInput formControlName="lastName" [errorStateMatcher]="matcher"
+             placeholder="Rodríguez">
+
+      <mat-error *ngIf="registerForm.controls.lastName.hasError('required')">
         Este campo es <strong>requerido</strong>
       </mat-error>
     </mat-form-field>

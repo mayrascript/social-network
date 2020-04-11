@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { PublicEnum } from 'apps/social-network/src/app/core/enums/public.enum';
-import { Post } from 'apps/social-network/src/app/core/models/post';
+import { PostModel } from 'apps/social-network/src/app/core/models/post.model';
 
 @Component({
   selector: 'social-network-posts',
@@ -8,9 +8,9 @@ import { Post } from 'apps/social-network/src/app/core/models/post';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnChanges {
-  @Input() posts: Post[] = [];
+  @Input() posts: PostModel[] = [];
 
-  @Output() editPost = new EventEmitter<Post>();
+  @Output() editPost = new EventEmitter<PostModel>();
   @Output() deletePost = new EventEmitter<string>();
 
   friendPosts = [];
@@ -26,7 +26,7 @@ export class PostsComponent implements OnChanges {
     }
   }
 
-  onEditPost(post: Post) {
+  onEditPost(post: PostModel) {
     this.editPost.emit(post);
   }
 

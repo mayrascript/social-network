@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Post } from 'apps/social-network/src/app/core/models/post';
+import { PostModel } from 'apps/social-network/src/app/core/models/post.model';
 import { ConfirmationDialogComponent } from 'apps/social-network/src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -9,9 +9,9 @@ import { ConfirmationDialogComponent } from 'apps/social-network/src/app/shared/
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent {
-  @Input() post: Post;
+  @Input() post: PostModel;
 
-  @Output() editPost = new EventEmitter<Post>();
+  @Output() editPost = new EventEmitter<PostModel>();
   @Output() deletePost = new EventEmitter<string>();
 
   constructor(public dialog: MatDialog) { }

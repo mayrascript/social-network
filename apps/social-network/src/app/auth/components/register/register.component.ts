@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomErrorStateMatcher } from 'apps/social-network/src/app/core/helpers/error-state-matcher';
+import { User } from 'apps/social-network/src/app/core/models/user.model';
+import { AuthService } from 'apps/social-network/src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'social-network-register',
@@ -13,11 +15,15 @@ export class RegisterComponent implements OnInit {
 
   matcher = new CustomErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      fullName: ['', [
+      firstName: ['', [
+        Validators.required,
+      ]],
+      lastName: ['', [
         Validators.required,
       ]],
       email: ['', [
@@ -33,8 +39,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    const user = this.registerForm.value;
+    const user = this.registerForm.value as User;
     console.log(user);
+    this.authService.register(user)
+      .subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+        )
   }
 
 }
