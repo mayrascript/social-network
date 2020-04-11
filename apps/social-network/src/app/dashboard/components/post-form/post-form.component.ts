@@ -51,8 +51,7 @@ export class PostFormComponent implements OnInit, OnChanges {
 
   sendPost() {
     const post = this.postForm.value;
-    console.log(post);
-    this.isEditForm ? this.editPost.emit(post) : this.createPost.emit(post);
+    this.isEditForm ? this.editPost.emit({...post, _id: this.post._id}) : this.createPost.emit(post);
     this.postForm.reset();
   }
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Post } from 'apps/social-network/src/app/core/models/post.model';
 import { AuthService } from 'apps/social-network/src/app/core/services/auth/auth.service';
+import { NotificationsService } from 'apps/social-network/src/app/core/services/notifications/notifications.service';
 import { PostsService } from 'apps/social-network/src/app/core/services/posts/posts.service';
 import { ConfirmationDialogComponent } from 'apps/social-network/src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { tap } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   constructor(private dialog: MatDialog,
               private authService: AuthService,
               private postsService: PostsService,
+              private notificationsService: NotificationsService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -37,17 +39,32 @@ export class DashboardComponent implements OnInit {
 
   onCreatePost(post: Post) {
     this.postsService.create(post)
-      .subscribe(() => this.posts = [...this.posts].concat(post));
+      .subscribe(() => {
+        this.posts = [...this.posts].concat(post);
+        this.notificationsService.showMessage('Publicación creada exitosamente');
+      }, () => this.notificationsService.showMessage('Ha ocurrido un problema'));
   }
 
   onEditPost(post: Post) {
-    // TODO: implement service
+    this.postsService.update(post._id, post)
+      .subscribe((updated) => {
+        this.notificationsService.showMessage('Publicación actualizada exitosamente');
+        this.posts = this.posts.map(p => {
+          if(p._id === post._id) {
+            return updated;
+          } else {
+            return p;
+          }
+        });
+      }, () => this.notificationsService.showMessage('Ha ocurrido un problema'));
   }
 
   onDeletePost(postId: string) {
-    // TODO: implement service
     this.postsService.remove(postId)
-      .subscribe(() => this.posts = this.posts.filter(post => post._id !== postId));
+      .subscribe(() => {
+        this.posts = this.posts.filter(post => post._id !== postId);
+        this.notificationsService.showMessage('Publicación eliminada exitosamente');
+      }, () => this.notificationsService.showMessage('Ha ocurrido un problema'));
   }
 
   confirmLogout() {
