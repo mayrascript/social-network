@@ -1,9 +1,11 @@
-import { Controller, UseGuards, HttpStatus, Response, Post, Body } from '@nestjs/common';
+import { Controller, UseGuards, HttpStatus, Res, Post, Body } from '@nestjs/common';
 import { CreateUserDto } from 'apps/api/src/app/users/dtos/create-user.dto';
 import { LoginUserDto } from 'apps/api/src/app/users/dtos/login-user.dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from '../users/users.service';
+
+import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +13,7 @@ export class AuthController {
               private readonly usersService: UsersService) {}
 
   @Post('register')
-  public async register(@Response() res, @Body() createUserDto: CreateUserDto){
+  public async register(@Res() res: Response, @Body() createUserDto: CreateUserDto){
     const result = await this.authService.register(createUserDto);
     if (!result.success){
       return res.status(HttpStatus.BAD_REQUEST).json(result);
@@ -21,7 +23,7 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(AuthGuard('local'))
-  public async login(@Response() res, @Body() login: LoginUserDto){
+  public async login(@Res() res: Response, @Body() login: LoginUserDto){
     return await this.usersService.findOne({ username: login.email}).then(user => {
       if (!user) {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
