@@ -14,12 +14,11 @@ export class RequestService {
     new HttpHeaders({ ...headers, 'Content-Type': 'application/json' });
 
   getBearerHeader(headers?: HttpHeaders): HttpHeaders {
-    const token = this.authStorageService.getToken();
+    const accessToken = this.authStorageService.accessToken;
     let headersWithToken: HttpHeaders = new HttpHeaders({...headers});
 
-    if (token) {
-      headersWithToken = new HttpHeaders({ ...headers, 'Authorization': `Bearer ${token}` });
-
+    if (accessToken) {
+      headersWithToken = new HttpHeaders({ ...headers, 'Authorization': `Bearer ${accessToken}` });
     }
     return headersWithToken;
   }
