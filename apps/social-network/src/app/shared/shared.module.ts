@@ -7,13 +7,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent],
+  declarations: [ConfirmationDialogComponent, SnackbarComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -23,7 +25,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -33,7 +36,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }
