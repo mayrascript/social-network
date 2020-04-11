@@ -8,3 +8,8 @@
 mat-card {
   max-width: 400px;
 }
+
+mat-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+}

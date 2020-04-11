@@ -32,9 +32,13 @@ export class AuthService {
     return this.http.post(`${this.endpoint}/register`, user);
   }
 
+  logout() {
+    this.authStorageService.clean();
+  }
+
   private saveUserInfo(res: any) {
-    if (res.token) {
-      this.saveToken(res.token);
+    if (res.accessToken) {
+      this.saveToken(res.accessToken);
     }
 
     if (res.user) {
@@ -42,17 +46,11 @@ export class AuthService {
     }
   }
 
-  private saveToken(token: string) {
-    this.authStorageService.setToken(token);
+  private saveToken(accessToken: string) {
+    this.authStorageService.accessToken = accessToken;
   }
 
   private saveUserData(user: User) {
-    if (user._id) {
-      this.authStorageService.setUserId(user._id);
-    }
-
-    if (user.firstName && user.lastName) {
-      this.authStorageService.setFullName(`${user.firstName} ${user.lastName}`);
-    }
+    this.authStorageService.user = user;
   }
 }

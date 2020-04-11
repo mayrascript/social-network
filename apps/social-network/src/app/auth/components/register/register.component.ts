@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomErrorStateMatcher } from 'apps/social-network/src/app/core/helpers/error-state-matcher';
 import { User } from 'apps/social-network/src/app/core/models/user.model';
 import { AuthService } from 'apps/social-network/src/app/core/services/auth/auth.service';
-import { SnackbarComponent } from 'apps/social-network/src/app/shared/components/snackbar/snackbar.component';
+import { NotificationsService } from 'apps/social-network/src/app/core/services/notifications/notifications.service';
 
 @Component({
   selector: 'social-network-register',
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private snackBar: MatSnackBar) { }
+              private notificationsService: NotificationsService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -46,19 +46,10 @@ export class RegisterComponent implements OnInit {
     console.log(user);
     this.authService.register(user)
       .subscribe(
-        (res) => this.showMessage('Usuario creado exitosamente'),
+        (res) => this.notificationsService.showMessage('Usuario creado exitosamente'),
         (err) => {
-          console.log(err)
-          this.showMessage('Ha ocurrido un error')
-        }
-        )
+          console.log(err);
+          this.notificationsService.showMessage('Ha ocurrido un error')
+        })
   }
-
-  showMessage(message: string) {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 2000,
-      data: {message}
-    });
-  }
-
 }
