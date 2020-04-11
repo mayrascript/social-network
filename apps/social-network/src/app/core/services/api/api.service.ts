@@ -19,7 +19,7 @@ export class ApiService {
     this.apiUrl = environment.apiUrl;
   }
 
-  public delete<T>(url: string, options?: any, withTokenHeader = false): Observable<T | ArrayBuffer>  {
+  public delete<T>(url: string, options?: any, withTokenHeader = false): Observable<T>  {
     const headers = withTokenHeader ? this.request.getBearerHeader() : this.request.getJsonHeader();
     options = { headers: headers, ...options };
 
