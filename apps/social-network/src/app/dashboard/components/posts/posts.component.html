@@ -5,7 +5,7 @@
         <mat-icon color="primary">public</mat-icon>
       </ng-template>
 
-      <div *ngIf="posts && posts.length > 0; else showEmptyMessage">
+      <div *ngIf="posts && posts.length > 0; else showEmptyPublicMessage">
         <social-network-post *ngFor="let post of publicPosts"
                              [post]="post"
                              (deletePost)="deletePost.emit($event)"
@@ -13,7 +13,7 @@
         ></social-network-post>
       </div>
 
-      <ng-template #showEmptyMessage>
+      <ng-template #showEmptyPublicMessage>
         <p class="empty-message">Aún no has creado una publicación en esta categoría</p>
       </ng-template>
 
@@ -25,14 +25,14 @@
         <mat-icon color="primary">people</mat-icon>
       </ng-template>
 
-      <div *ngIf="friendPosts && friendPosts.length > 0; else showEmptyMessage">
+      <div *ngIf="friendPosts && friendPosts.length > 0; else showEmptyFriendsMessage">
         <social-network-post *ngFor="let post of friendPosts"
                              [post]="post"
                              (deletePost)="deletePost.emit($event)"
                              (editPost)="onEditPost($event)"></social-network-post>
       </div>
 
-      <ng-template #showEmptyMessage>
+      <ng-template #showEmptyFriendsMessage>
         <p class="empty-message">Aún no has creado una publicación en esta categoría</p>
       </ng-template>
 

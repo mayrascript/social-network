@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { PostModel } from 'apps/social-network/src/app/core/models/post.model';
+import { Post } from 'apps/social-network/src/app/core/models/post.model';
 import { AuthService } from 'apps/social-network/src/app/core/services/auth/auth.service';
+import { PostsService } from 'apps/social-network/src/app/core/services/posts/posts.service';
 import { ConfirmationDialogComponent } from 'apps/social-network/src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'social-network-dashboard',
@@ -11,27 +13,34 @@ import { ConfirmationDialogComponent } from 'apps/social-network/src/app/shared/
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  post: PostModel;
+  post: Post;
 
-  posts: PostModel[] = [];
+  posts: Post[] = [];
 
   constructor(private dialog: MatDialog,
               private authService: AuthService,
+              private postsService: PostsService,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.getAllPosts();
   }
 
-  onEditPostInForm(post: PostModel) {
+  getAllPosts() {
+    this.postsService.getAll()
+      .subscribe((posts) => this.posts = posts);
+  }
+
+  onEditPostInForm(post: Post) {
     this.post = post;
   }
 
-  onCreatePost(post: PostModel) {
+  onCreatePost(post: Post) {
     // TODO: implement service
     this.posts = [...this.posts].concat(post);
   }
 
-  onEditPost(post: PostModel) {
+  onEditPost(post: Post) {
     // TODO: implement service
   }
 
