@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SnackbarComponent } from '../core/services/notifications/snackbar/snackbar.component';
 
 
 
@@ -26,7 +26,6 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
-    MatSnackBarModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -37,7 +36,6 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
-    MatSnackBarModule
   ]
 })
 export class SharedModule { }
