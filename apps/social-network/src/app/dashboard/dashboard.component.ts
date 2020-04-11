@@ -36,8 +36,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onCreatePost(post: Post) {
-    // TODO: implement service
-    this.posts = [...this.posts].concat(post);
+    this.postsService.create(post)
+      .subscribe(() => this.posts = [...this.posts].concat(post));
   }
 
   onEditPost(post: Post) {
@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit {
 
   onDeletePost(postId: string) {
     // TODO: implement service
+    this.postsService.remove(postId)
+      .subscribe(() => this.posts = this.posts.filter(post => post._id !== postId));
   }
 
   confirmLogout() {
