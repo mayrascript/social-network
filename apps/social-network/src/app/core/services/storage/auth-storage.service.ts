@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from 'apps/social-network/src/app/core/models/user.model';
 import { StorageService } from 'apps/social-network/src/app/core/services/storage/storage.service';
 
 @Injectable({
@@ -6,10 +7,10 @@ import { StorageService } from 'apps/social-network/src/app/core/services/storag
 })
 export class AuthStorageService {
 
-  private token: string;
-  private fullName: string;
-  private userId: string;
+  private _accessToken: string;
+  private _user: User;
   private readonly tokenKey = 'token';
+  private readonly userKey = 'user';
 
   constructor(
     private storage: StorageService,
@@ -17,32 +18,33 @@ export class AuthStorageService {
   }
 
   clean(): void {
-    this.fullName = this.token = undefined;
+    this.user = this.accessToken = undefined;
     this.storage.clear();
   }
 
-  setToken(token: string): void {
-    this.token = token;
-    try {
-      this.storage.store(this.tokenKey, token);
-    }catch (e) {
-      console.log(e);
+  get accessToken(): string {
+    if(!this._accessToken) {
+      return this.storage.retrieve(this.tokenKey);
+    } else {
+      return this._accessToken;
     }
   }
 
-  getToken(): string {
-    return this.storage.retrieve(this.tokenKey);
+  set accessToken(value: string) {
+    this._accessToken = value;
+    this.storage.store(this.tokenKey, value);
   }
 
-  setFullName(fullName: string): void {
-    this.fullName = fullName;
+  get user(): User {
+    if(!this._accessToken) {
+      return JSON.parse(this.storage.retrieve(this.userKey));
+    } else {
+      return this._user;
+    }
   }
 
-  getFullName = (): string => this.fullName;
-
-  setUserId(userId: string): void {
-    this.userId = userId;
+  set user(value: User) {
+    this._user = value;
+    this.storage.store(this.userKey, JSON.stringify(value));
   }
-
-  getUserId = (): string => this.userId;
 }

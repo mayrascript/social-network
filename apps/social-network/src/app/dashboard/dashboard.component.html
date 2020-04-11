@@ -1,3 +1,15 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <h1>Social Network</h1>
+    <button (click)="confirmLogout()" mat-icon-button aria-label="Cerrar Sesión">
+      <mat-icon class="icon" aria-hidden="false">person</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
 <mat-card>
   <social-network-post-form [post]="post"
                             (createPost)="onCreatePost($event)"
