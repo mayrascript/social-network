@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PublicEnum } from 'apps/social-network/src/app/core/enums/public.enum';
-import { Post } from 'apps/social-network/src/app/core/models/post';
+import { PostModel } from 'apps/social-network/src/app/core/models/post.model';
 
 @Component({
   selector: 'social-network-post-form',
@@ -9,10 +9,10 @@ import { Post } from 'apps/social-network/src/app/core/models/post';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit, OnChanges {
-  @Input() post: Post = {};
+  @Input() post: PostModel = {};
 
-  @Output() createPost = new EventEmitter<Post>();
-  @Output() editPost = new EventEmitter<Post>();
+  @Output() createPost = new EventEmitter<PostModel>();
+  @Output() editPost = new EventEmitter<PostModel>();
 
   postForm: FormGroup;
   isEditForm = false;
