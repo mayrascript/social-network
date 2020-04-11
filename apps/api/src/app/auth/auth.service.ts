@@ -13,6 +13,7 @@ export class AuthService {
   constructor(private readonly usersService: UsersService,
               @InjectModel('User') private readonly userModel: PassportLocalModel<IUser>) { }
 
+              // TODO: review this promise
   async register(user: IUser) {
     let status: RegistrationStatus = { success: true, message: 'user register' };
     await this.userModel.register(new this.userModel({username: user.email,
