@@ -17,27 +17,27 @@ export class UsersService implements IUsersService {
     return await this.userModel.findOne(options).exec();
   }
 
-  async findById(ID: number): Promise<IUser> {
-    return await this.userModel.findById(ID).exec();
+  async findById(id: string): Promise<IUser> {
+    return await this.userModel.findById(id).exec();
   }
   async create(createUserDto: CreateUserDto): Promise<IUser> {
     const createdUser = new this.userModel(createUserDto);
     return await createdUser.save();
   }
 
-  async update(ID: number, newValue: IUser): Promise<IUser> {
-    const user = await this.userModel.findById(ID).exec();
+  async update(id: string, newValue: IUser): Promise<IUser> {
+    const user = await this.userModel.findById(id).exec();
 
     if (!user._id) {
       debug('user not found');
     }
 
-    await this.userModel.findByIdAndUpdate(ID, newValue).exec();
-    return await this.userModel.findById(ID).exec();
+    await this.userModel.findByIdAndUpdate(id, newValue).exec();
+    return await this.userModel.findById(id).exec();
   }
-  async delete(ID: number): Promise<string> {
+  async delete(id: string): Promise<string> {
     try {
-      await this.userModel.findByIdAndRemove(ID).exec();
+      await this.userModel.findByIdAndRemove(id).exec();
       return 'The user has been deleted';
     }
     catch (err) {
