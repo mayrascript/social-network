@@ -28,17 +28,12 @@ export class AuthService {
   }
 
   createToken(user) {
-    console.log('get the expiration');
     const expiresIn = 3600;
-    console.log('sign the token');
-    console.log(user);
 
     const accessToken = jwt.sign({ id: user.id,
       email: user.username,
       firstname: user.firstName,
       lastname: user.lastName }, 'ILovePokemon', { expiresIn }); // TODO: change this key
-    console.log('return the token');
-    console.log(accessToken);
     return {
       expiresIn,
       accessToken,

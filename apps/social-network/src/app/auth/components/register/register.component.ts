@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const user = this.registerForm.value as User;
-    console.log(user);
     this.authService.register(user)
       .subscribe(
         (res) => this.notificationsService.showMessage('Usuario creado exitosamente'),
