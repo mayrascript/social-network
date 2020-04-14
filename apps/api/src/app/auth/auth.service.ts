@@ -33,7 +33,7 @@ export class AuthService {
     const accessToken = jwt.sign({ id: user.id,
       email: user.username,
       firstname: user.firstName,
-      lastname: user.lastName }, 'ILovePokemon', { expiresIn }); // TODO: change this key
+      lastname: user.lastName }, process.env.JWT_KEY, { expiresIn });
     return {
       expiresIn,
       accessToken,
