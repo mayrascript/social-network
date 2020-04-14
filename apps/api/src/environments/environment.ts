@@ -1,3 +1,4 @@
 export const environment = {
-  production: false
+  production: false,
+  mongodbUrl: 'mongodb://localhost:27017/social_network_db'
 };

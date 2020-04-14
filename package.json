@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node dist/apps/api/main.js",
+    "build": "ng build --prod && ng build --prod api",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -25,6 +25,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "preinstall": "npm install -g typescript @angular/compiler-cli @angular/cli @angular-devkit/build-angular @nrwl/cli @nrwl/workspace",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
@@ -47,6 +48,7 @@
     "@nestjs/swagger": "^4.5.1",
     "@nrwl/angular": "9.2.2",
     "core-js": "^2.5.4",
+    "express": "^4.17.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
