@@ -66,8 +66,6 @@ export class ApiService {
   public postForFile<T>(url: string, body: any, options?: any, withTokenHeader = false): Observable<T> {
     const headers = withTokenHeader ? this.request.getBearerHeader() : this.request.getJsonHeader();
     options = { headers: headers, ...options };
-    console.log('options', options);
-    console.log('headers', options.params);
 
     return this.http.post(`${this.apiUrl}${url}`, body, options)
       .pipe(

@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     const {email, password} = this.loginForm.value as User;
-    // TODO: integrate service
     this.authService.login(email, password)
       .subscribe(
         (res) => {
