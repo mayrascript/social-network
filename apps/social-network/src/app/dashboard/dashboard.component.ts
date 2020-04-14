@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   onDeletePost(postId: string) {
     this.postsService.remove(postId)
       .subscribe(() => {
-        this.posts = this.posts.filter(post => post._id !== postId);
+        this.posts = [...this.posts].filter(post => post._id !== postId);
         this.notificationsService.showMessage('Publicación eliminada exitosamente');
       }, () => this.notificationsService.showMessage('Ha ocurrido un problema'));
   }
