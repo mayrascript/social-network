@@ -43,7 +43,7 @@
     "@angular/platform-browser-dynamic": "^9.1.0",
     "@angular/router": "^9.1.0",
     "@nestjs/common": "^6.8.3",
-    "@nestjs/core": "^6.8.3",
+    "@nestjs/core": "^9.0.5",
     "@nestjs/mongoose": "^6.4.0",
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^6.8.3",
